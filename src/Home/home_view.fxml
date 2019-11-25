@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Home.HomeViewController">
+   <children>
+      <ImageView fitHeight="343.0" fitWidth="1300.0" layoutX="550.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="457.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="497.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../../../../../../../Pictures/Android.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="156.0" layoutY="462.0" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: #83C2D0;" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="100.0">
+         <children>
+            <Button layoutX="55.0" layoutY="62.0" mnemonicParsing="false" onAction="#onClickAdminPanel" prefHeight="200.0" prefWidth="200.0" text="Administrator panel" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="507.0" layoutY="460.0" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: #83C2D0;" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="507.0">
+         <children>
+            <Button layoutX="50.0" layoutY="50.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" text="Supervisor panel" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="927.0" layoutY="460.0" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: #83C2D0;" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="100.0">
+         <children>
+            <Button layoutX="50.0" layoutY="50.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" text="Census enumerator panel" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
