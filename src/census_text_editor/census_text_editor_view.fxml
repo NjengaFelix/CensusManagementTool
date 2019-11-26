@@ -22,7 +22,7 @@
             <MenuItem mnemonicParsing="false" onAction="#onClickOpenMenu" text="Open…" />
             <!--TODO: TRY OPEN RECENT-->
             <!--<Menu mnemonicParsing="false" text="Open Recent" />-->
-              <MenuItem mnemonicParsing="false" text="Save As…" />
+              <MenuItem mnemonicParsing="false" onAction="#onClickSaveAsMenu" text="Save As…" />
               <SeparatorMenuItem mnemonicParsing="false" />
               <MenuItem mnemonicParsing="false" onAction="#onClickCloseMenu" text="Close" />
           </items>
@@ -52,7 +52,7 @@
          <children>
             <TextArea fx:id="mTextArea" layoutX="-2.0" layoutY="84.0" prefHeight="609.0" prefWidth="800.0" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="94.0" />
             <Label layoutX="38.0" layoutY="35.0" text="Enter a census category name" AnchorPane.leftAnchor="41.0" AnchorPane.topAnchor="40.0" />
-            <TextField layoutX="260.0" layoutY="30.0" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="30.0" />
+            <TextField fx:id="mCategoryNameLbl" layoutX="260.0" layoutY="30.0" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="30.0" />
             <AnchorPane layoutX="986.0" layoutY="161.0" prefHeight="768.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="800.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label layoutX="41.0" layoutY="40.0" text="Details" AnchorPane.rightAnchor="314.0" AnchorPane.topAnchor="40.0" />
@@ -68,6 +68,7 @@
                </opaqueInsets>
             </AnchorPane>
             <Button layoutX="687.0" layoutY="723.0" mnemonicParsing="false" onAction="#onClickSaveCategory" text="Save category" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="400.0" />
+            <Label fx:id="mLeftStatusLbl" layoutX="41.0" layoutY="728.0" text="Left status bar" />
          </children>
     </AnchorPane>
   </children>

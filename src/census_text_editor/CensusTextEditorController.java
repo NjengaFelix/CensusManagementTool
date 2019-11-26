@@ -1,27 +1,28 @@
 package census_text_editor;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
-
-import java.awt.*;
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Path;
 import java.util.Arrays;
 
 public class CensusTextEditorController {
     @FXML
     private TextArea mTextArea;
+    @FXML
+    private TextField mCategoryNameLbl;
+    @FXML
+    private Label mLeftStatusLbl;
     private TextFile currentTextFile;
     private CensusTextEditorModel censusTextEditorModel;
-    private static Window stage;
+    private static Window stage = new Stage();
     private FileChooser fileChooser = new FileChooser();
-    private File file;
+    private static final String ERROR_FILE_OPERATION = "File operation failed";
 
     public CensusTextEditorController(CensusTextEditorModel censusTextEditorModel) {
         this.censusTextEditorModel = censusTextEditorModel;
@@ -29,17 +30,24 @@ public class CensusTextEditorController {
 
     @FXML
     private void onClickNewMenu() {
-       /* mTextArea.clear();
+       mTextArea.clear();
         configureFileChooser(fileChooser);
+        fileChooser.setInitialFileName(mCategoryNameLbl.getText().trim());
         File file = fileChooser.showSaveDialog(stage);
-        TextFile newTextFile = new TextFile(file.toPath(),Arrays.asList(mTextArea.getText().split("\n")));
-        censusTextEditorModel.save(newTextFile);*/
+        if(censusTextEditorModel.newFile(file)) {
+            mLeftStatusLbl.setText(file.getName()+ " created");
+            //Update the currentFile to save effectively
+            openFile(file);
+        } else {
+            mLeftStatusLbl.setText(ERROR_FILE_OPERATION);
+        }
+
     }
 
     @FXML
     private void onClickOpenMenu() {
         configureFileChooser(fileChooser);
-        file = fileChooser.showOpenDialog(stage);
+        File file = fileChooser.showOpenDialog(stage);
         if(file !=null) {
             openFile(file);
         }
@@ -47,19 +55,34 @@ public class CensusTextEditorController {
     }
 
     @FXML
-    private void onClickCloseMenu() {
-        censusTextEditorModel.close();
+    private void onClickSaveCategory() {
+        try{
+            TextFile newTextFile = new TextFile(currentTextFile.getFile(), Arrays.asList(mTextArea.getText().split("\n")));
+            censusTextEditorModel.save(newTextFile);
+            System.out.println();
+            mLeftStatusLbl.setText(newTextFile.getFile().getFileName().toString()+" changes made");
+        } catch (NullPointerException e) {
+            onClickNewMenu();
+        }
+
     }
 
     @FXML
     private void onClickSaveAsMenu() {
+        try {
+            TextFile newTextFile = new TextFile(currentTextFile.getFile(), Arrays.asList(mTextArea.getText().split("\n")));
+            configureFileChooser(fileChooser);
+            fileChooser.setInitialFileName(newTextFile.getFile().getFileName().toString());
+            fileChooser.showSaveDialog(stage);
+        } catch (NullPointerException e) {
+            onClickNewMenu();
+        }
 
     }
 
     @FXML
-    private void onClickSaveCategory() {
-        TextFile newTextFile = new TextFile(currentTextFile.getFile(), Arrays.asList(mTextArea.getText().split("\n")));
-        censusTextEditorModel.save(newTextFile);
+    private void onClickCloseMenu() {
+        censusTextEditorModel.close();
     }
 
     @FXML
@@ -72,14 +95,13 @@ public class CensusTextEditorController {
     }
 
     private static void configureFileChooser(final FileChooser fileChooser) {
+
         fileChooser.setTitle("Open File");
        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
        //Set extension filter
         FileChooser.ExtensionFilter extensionFilter =
                 new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
         fileChooser.getExtensionFilters().add(extensionFilter);
-
-
     }
 
     private void openFile(File file) {
@@ -89,8 +111,9 @@ public class CensusTextEditorController {
             currentTextFile = io.getData();
             mTextArea.clear();
             currentTextFile.getContent().forEach(line -> mTextArea.appendText(line + "\n"));
+            mLeftStatusLbl.setText(file.getName()+" opened");
         } else {
-            System.out.println("Failed");
+            mLeftStatusLbl.setText(ERROR_FILE_OPERATION);
         }
     }
 
