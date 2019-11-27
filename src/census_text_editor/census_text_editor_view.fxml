@@ -68,7 +68,7 @@
                </opaqueInsets>
             </AnchorPane>
             <Button layoutX="687.0" layoutY="723.0" mnemonicParsing="false" onAction="#onClickSaveCategory" text="Save category" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="400.0" />
-            <Label fx:id="mLeftStatusLbl" layoutX="41.0" layoutY="728.0" text="Left status bar" />
+            <Label fx:id="mLeftStatusLbl" layoutX="41.0" layoutY="728.0" text="Left status bar" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="41.0" />
          </children>
     </AnchorPane>
   </children>

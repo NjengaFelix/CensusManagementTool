@@ -35,6 +35,7 @@ public class CensusTextEditorController {
         fileChooser.setInitialFileName(mCategoryNameLbl.getText().trim());
         File file = fileChooser.showSaveDialog(stage);
         if(censusTextEditorModel.newFile(file)) {
+
             mLeftStatusLbl.setText(file.getName()+ " created");
             //Update the currentFile to save effectively
             openFile(file);
@@ -59,7 +60,6 @@ public class CensusTextEditorController {
         try{
             TextFile newTextFile = new TextFile(currentTextFile.getFile(), Arrays.asList(mTextArea.getText().split("\n")));
             censusTextEditorModel.save(newTextFile);
-            System.out.println();
             mLeftStatusLbl.setText(newTextFile.getFile().getFileName().toString()+" changes made");
         } catch (NullPointerException e) {
             onClickNewMenu();
@@ -116,8 +116,6 @@ public class CensusTextEditorController {
             mLeftStatusLbl.setText(ERROR_FILE_OPERATION);
         }
     }
-
-
 
 
 }

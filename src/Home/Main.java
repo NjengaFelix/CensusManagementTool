@@ -13,16 +13,16 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-       /* Parent root = FXMLLoader.load(getClass().getResource("../census_text_editor/census_text_editor_view.fxml"));
+       Parent root = FXMLLoader.load(getClass().getResource("../admin_panel/admin_panel_view.fxml"));
         primaryStage.setTitle("Census Enumeration Tool");
         primaryStage.setScene(new Scene(root, 1300, 800));
-        primaryStage.show();*/
+        primaryStage.show();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../census_text_editor/census_text_editor_view.fxml"));
+        /*FXMLLoader loader = new FXMLLoader(getClass().getResource("../census_text_editor/census_text_editor_view.fxml"));
         loader.setControllerFactory(t -> new CensusTextEditorController(new CensusTextEditorModel()));
 
         primaryStage.setScene(new Scene(loader.load()));
-        primaryStage.show();
+        primaryStage.show();*/
     }
 
 

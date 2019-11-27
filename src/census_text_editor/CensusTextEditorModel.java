@@ -27,9 +27,6 @@ public class CensusTextEditorModel {
         }
     }
 
-    /*public void saveAs(File file) {
-        file.getName();
-    }*/
 
     public IOResult<TextFile> load(Path file) {
         try {
@@ -39,6 +36,18 @@ public class CensusTextEditorModel {
             return new IOResult<>(null, false);
         }
     }
+
+    //Update the Census enumerator panel with the respective categories and questions
+    /*public String updateCensusEnumeratorPanel(Path file) {
+        try {
+            String line = new String();
+            List<String> lines = Files.readAllLines(file);
+            line = lines.get(0);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return line;
+    }*/
 
     public void close() {
         System.exit(0);
