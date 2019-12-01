@@ -32,10 +32,7 @@
         </AnchorPane>
         <ScrollPane fx:id="uploadCatSP" prefHeight="-1.0" prefWidth="-1.0">
           <content>
-            <AnchorPane id="Content" fx:id="mUploadAP" minHeight="-1.0" minWidth="-1.0" prefHeight="545.0" prefWidth="430.0">
-                     <children>
-                        <Label fx:id="mCatFileLbl" layoutX="190.0" layoutY="36.0" prefHeight="56.0" prefWidth="237.0" text="Certain file" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children></AnchorPane>
+            <AnchorPane id="Content" fx:id="mUploadAP" minHeight="-1.0" minWidth="-1.0" prefHeight="545.0" prefWidth="430.0" />
           </content>
         </ScrollPane>
         <AnchorPane>
