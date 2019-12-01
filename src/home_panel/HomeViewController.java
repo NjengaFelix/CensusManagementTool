@@ -1,8 +1,7 @@
-package Home;
+package home_panel;
 
 import census_text_editor.CensusTextEditorController;
 import census_text_editor.CensusTextEditorModel;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -38,6 +37,17 @@ public class HomeViewController {
 
     @FXML
     private void onClickCensusEnumeratorPanel() {
+        loader = new FXMLLoader(getClass().getResource("../census_enumerator_panel/census_enumerator_panel_view.fxml"));
+        try {
+            stage.setScene(new Scene(loader.load()));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void onClickTextEditorPanel() {
         loader = new FXMLLoader(getClass().getResource("../census_text_editor/census_text_editor_view.fxml"));
         loader.setControllerFactory(t -> new CensusTextEditorController(new CensusTextEditorModel()));
         try {
