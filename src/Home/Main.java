@@ -13,7 +13,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-       Parent root = FXMLLoader.load(getClass().getResource("../admin_panel/admin_panel_view.fxml"));
+       Parent root = FXMLLoader.load(getClass().getResource("home_view.fxml"));
         primaryStage.setTitle("Census Enumeration Tool");
         primaryStage.setScene(new Scene(root, 1300, 800));
         primaryStage.show();

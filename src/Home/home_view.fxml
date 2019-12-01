@@ -20,12 +20,12 @@
       </AnchorPane>
       <AnchorPane layoutX="507.0" layoutY="460.0" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: #83C2D0;" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="507.0">
          <children>
-            <Button layoutX="50.0" layoutY="50.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" text="Supervisor panel" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0" />
+            <Button layoutX="50.0" layoutY="50.0" mnemonicParsing="false" onAction="#onClickSupervisorPanel" prefHeight="200.0" prefWidth="200.0" text="Supervisor panel" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="927.0" layoutY="460.0" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: #83C2D0;" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="100.0">
          <children>
-            <Button layoutX="50.0" layoutY="50.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" text="Census enumerator panel" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0" />
+            <Button layoutX="50.0" layoutY="50.0" mnemonicParsing="false" onAction="#onClickCensusEnumeratorPanel" prefHeight="200.0" prefWidth="200.0" text="Census enumerator panel" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0" />
          </children>
       </AnchorPane>
    </children>
