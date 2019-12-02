@@ -1,4 +1,14 @@
 package supervisor_panel;
 
-public class SupervisorPanelController {
+import screens_navigation.ControlledScreen;
+import screens_navigation.ScreensController;
+
+public class SupervisorPanelController implements ControlledScreen {
+
+    ScreensController myController;
+
+    @Override
+    public void setScreenParent(ScreensController screenParent) {
+        myController = screenParent;
+    }
 }
