@@ -8,7 +8,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import screens_navigation.ControlledScreen;
 import screens_navigation.ScreensController;
@@ -33,7 +32,7 @@ public class ForgotPasswordController implements ControlledScreen {
         myController = screenParent;
     }
 
-    public void onClickSignUp(ActionEvent actionEvent) {
+    public void onClickSignUp() {
         if (txtEmail.getText().isEmpty() || txtPassword.getText().isEmpty() || txtSecurityAns.getText().isEmpty()) {
             lblStatus.setTextFill(Color.TOMATO);
             lblStatus.setText("Enter all details");
@@ -49,9 +48,43 @@ public class ForgotPasswordController implements ControlledScreen {
         }else if(!validateBothPasswords()) {
             lblStatus.setTextFill(Color.TOMATO);
             lblStatus.setText("Passwords do not match");
+        }else if(!validateSecurityAns()) {
+            lblStatus.setTextFill(Color.TOMATO);
+            lblStatus.setText("Wrong security answer");
         } else {
             updateCredentials();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Successfully");
+            alert.setContentText("New password saved");
+            alert.show();
+           myController.setScreen(Main.screen5ID);
         }
+    }
+
+    private boolean validateSecurityAns() {
+        boolean securityAns = false;
+        String getSecurityAns = null;
+        String selectSql = "select SecurityAnswer from users where email = ?";
+        DBConn = DatabaseConnection.getConnection();
+        try {
+            PreparedStatement ps = (PreparedStatement) DBConn.prepareStatement(selectSql);
+            ps.setString(1,txtEmail.getText());
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                getSecurityAns = rs.getString("securityanswer");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+
+        assert getSecurityAns != null;
+        if(getSecurityAns.matches(txtSecurityAns.getText())) {
+            securityAns = true;
+            lblStatus.setTextFill(Color.GREEN);
+            lblStatus.setText("Correct security answer");
+        }
+        return securityAns;
     }
 
     private void updateCredentials() {
@@ -61,19 +94,21 @@ public class ForgotPasswordController implements ControlledScreen {
             PreparedStatement ps = (PreparedStatement) DBConn.prepareStatement(updateSql);
             ps.setString(1, txtPassword.getText());
             ps.setString(2, txtEmail.getText());
-            ps.executeQuery();
+            ps.executeUpdate();
         } catch (SQLException e) {
             e.getMessage();
         }
+
     }
 
     private boolean validateEmail() {
         boolean email = false;
         String getEmail = null;
-        String selectSql = "select email from users";
+        String selectSql = "select email from users where email = ?";
         DBConn = DatabaseConnection.getConnection();
         try {
             PreparedStatement ps = (PreparedStatement) DBConn.prepareStatement(selectSql);
+            ps.setString(1,txtEmail.getText());
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 getEmail = rs.getString("email");
@@ -84,8 +119,10 @@ public class ForgotPasswordController implements ControlledScreen {
         }
 
         assert getEmail != null;
-        if(!getEmail.matches(txtEmail.getText())) {
+        if(getEmail.matches(txtEmail.getText())) {
             email = true;
+            lblStatus.setTextFill(Color.GREEN);
+            lblStatus.setText("Email exists");
         }
         return email;
     }
@@ -100,7 +137,7 @@ public class ForgotPasswordController implements ControlledScreen {
 
     private boolean validateBothPasswords() {
         boolean password = false;
-        if(txtPassword.getText().matches(txtPassword1.getText())) {
+        if(txtPassword.getText().contains(txtPassword1.getText())) {
             password = true;
         }
         return password;
@@ -134,7 +171,7 @@ public class ForgotPasswordController implements ControlledScreen {
     }
 
 
-    public void onClickSignIn(ActionEvent actionEvent) {
+    public void onClickSignIn() {
     myController.setScreen(Main.screen5ID);
     }
 }

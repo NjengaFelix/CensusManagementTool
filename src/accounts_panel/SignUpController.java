@@ -9,7 +9,6 @@ import database.DatabaseConnection;
 import home_panel.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
@@ -31,7 +30,7 @@ public class SignUpController implements ControlledScreen {
     Connection DBConn;
     ScreensController myController;
     private static final String EMAIL_PATTERN =
-            "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+            "^[_A-Za-z0-9-+]+(\\.[_A-Za-z0-9-]+)*@"
                     + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
     private static final String PASSWORD_PATTERN = "((?=.*[a-z])(?=.*\\d)(?=.*[A-Z])(?=.*[@#$%!]).{8,40})";
@@ -111,10 +110,11 @@ public class SignUpController implements ControlledScreen {
     private boolean validateUserName() {
         boolean username = false;
         String getUsername = null;
-        String selectSql = "select username from users";
+        String selectSql = "select username from users where username = ?";
         DBConn = DatabaseConnection.getConnection();
         try {
             PreparedStatement ps = (PreparedStatement) DBConn.prepareStatement(selectSql);
+            ps.setString(1, txtUsername.getText());
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 getUsername = rs.getString("username");
@@ -124,10 +124,12 @@ public class SignUpController implements ControlledScreen {
             e.printStackTrace();
         }
 
-        assert getUsername != null;
-        if(!getUsername.matches(txtUsername.getText())) {
+
+        if(getUsername == null) {
             username = true;
-        }
+        } /*else if(getUsername.matches(txtUsername.getText())) {
+        }*/
+
         return username;
     }
 
@@ -168,7 +170,7 @@ public class SignUpController implements ControlledScreen {
     }
 
     private boolean pendingStatus() {
-        boolean pendingStatus = false;
+        boolean pendingStatus;
         if(mUserStatusCB.getValue().contains("Administrator")) {
             pendingStatus = true;
         } else if(mUserStatusCB.getValue().contains("Supervisor")) {

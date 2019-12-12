@@ -12,7 +12,6 @@ import javafx.scene.paint.Color;
 import screens_navigation.ControlledScreen;
 import screens_navigation.ScreensController;
 
-import java.awt.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,6 +24,11 @@ public class LoginController implements ControlledScreen {
     @FXML
     private Label lblStatus;
     Connection DBConn;
+    private static String userName;
+
+    public static String getUserName() {
+        return userName;
+    }
 
     @Override
     public void setScreenParent(ScreensController screenParent) {
@@ -46,6 +50,7 @@ public class LoginController implements ControlledScreen {
         String pass = txtPassword.getText();
         if (checkLoginUser(uname, pass)) {
             //Check type of user
+            userName = txtUsername.getText();
             checkTypeOfUser(uname);
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -65,11 +70,13 @@ public class LoginController implements ControlledScreen {
             ps.setString(1,uname);
             ResultSet rs = ps.executeQuery();
             String status = null;
-            Boolean pendingStatus = false;
+            boolean pendingStatus = false;
             while(rs.next()) {
                 status = rs.getString("userstatus");
                 pendingStatus = rs.getBoolean("pendingstatus");
             }
+
+            assert status != null;
             if(status.contains("Administrator") && pendingStatus) {
                 myController.setScreen(Main.screen2ID);
             } else if(status.contains("Supervisor") && pendingStatus) {
@@ -108,7 +115,7 @@ public class LoginController implements ControlledScreen {
             return status;
 
         } catch (SQLException e) {
-//            e.getLocalizedMessage();
+            e.getLocalizedMessage();
             e.printStackTrace();
         }
         return status;
@@ -119,11 +126,11 @@ public class LoginController implements ControlledScreen {
         txtPassword.clear();
     }
 
-    public void onClickSignup(ActionEvent actionEvent) {
+    public void onClickSignup() {
         myController.setScreen(Main.screen6ID);
     }
 
-    public void onClickForgotPass(MouseEvent mouseEvent) {
+    public void onClickForgotPass() {
         myController.setScreen(Main.screen7ID);
     }
 }

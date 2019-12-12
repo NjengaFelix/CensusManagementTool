@@ -9,6 +9,7 @@ import java.util.List;
 
 public class CensusTextEditorModel {
 
+
     public boolean newFile(File file) {
         boolean fileCreated;
         try {
@@ -30,12 +31,15 @@ public class CensusTextEditorModel {
 
     public IOResult<TextFile> load(Path file) {
         try {
+            System.out.println(file);
             List<String> lines = Files.readAllLines(file);
             return new IOResult<>(new TextFile(file, lines), true);
         } catch (IOException e) {
             return new IOResult<>(null, false);
         }
     }
+
+
 
     //Update the Census enumerator panel with the respective categories and questions
     /*public String updateCensusEnumeratorPanel(Path file) {

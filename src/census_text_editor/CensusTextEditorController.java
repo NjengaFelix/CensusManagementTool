@@ -8,6 +8,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import screens_navigation.ControlledScreen;
+import screens_navigation.ScreensController;
+
 import java.io.File;
 import java.util.Arrays;
 
@@ -23,6 +26,7 @@ public class CensusTextEditorController {
     private static Window stage = new Stage();
     private FileChooser fileChooser = new FileChooser();
     private static final String ERROR_FILE_OPERATION = "File operation failed";
+    ScreensController myController;
 
     public CensusTextEditorController(CensusTextEditorModel censusTextEditorModel) {
         this.censusTextEditorModel = censusTextEditorModel;
@@ -116,6 +120,5 @@ public class CensusTextEditorController {
             mLeftStatusLbl.setText(ERROR_FILE_OPERATION);
         }
     }
-
 
 }

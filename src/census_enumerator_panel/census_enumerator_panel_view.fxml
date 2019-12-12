@@ -2,10 +2,11 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -13,87 +14,59 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="census_enumerator_panel.CensusEnumeratorPanelController">
-  <children>
-      <AnchorPane prefHeight="80.0" prefWidth="200.0">
-         <children>
-            <Label layoutX="366.0" layoutY="18.0" text="Census enumerator panel" />
-         </children>
-      </AnchorPane>
-    <SplitPane dividerPositions="0.2505567928730512, 0.7505567928730512" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
-      <items>
-        <AnchorPane>
-          <children>
-            <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Master" textAlignment="CENTER" wrapText="false">
-              <font>
-                <Font size="18.0" fx:id="x1" />
-              </font>
-              <textFill>
-                <Color blue="0.624" green="0.624" red="0.624" fx:id="x2" />
-              </textFill>
-            </Label>
-                  <Button fx:id="mBeginEnuBtn" layoutX="38.0" layoutY="90.0" mnemonicParsing="false" onAction="#onClickNavigateBtn" text="Begin enumeration" />
-                  <Button fx:id="mContinueEnuBtn" layoutX="38.0" layoutY="145.0" mnemonicParsing="false" onAction="#onClickNavigateBtn" text="Continue enumeration" />
-                  <Button fx:id="mViewMapBtn" layoutX="74.0" layoutY="207.0" mnemonicParsing="false" onAction="#onClickNavigateBtn" text="View map" />
-                  <Button fx:id="mAccountBtn" layoutX="80.0" layoutY="261.0" mnemonicParsing="false" onAction="#onClickNavigateBtn" text="Account" />
-                  <Button fx:id="mSettingsBtn" layoutX="80.0" layoutY="322.0" mnemonicParsing="false" onAction="#onClickNavigateBtn" text="Settings" />
-          </children>
+<VBox prefHeight="700.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="census_enumerator_panel.CensusEnumeratorPanelController">
+    <AnchorPane prefHeight="49.0" prefWidth="1250.0" style="-fx-background-color: #0C39FF;">
+        <Label layoutX="516.0" layoutY="8.0" text="Census enumerator panel" AnchorPane.bottomAnchor="7.0"
+               AnchorPane.leftAnchor="516.0" AnchorPane.rightAnchor="463.0" AnchorPane.topAnchor="8.0">
+            <font>
+                <Font size="24.0"/>
+            </font>
+        </Label>
+    </AnchorPane>
+    <SplitPane dividerPositions="0.2505567928730512, 0.7505567928730512" focusTraversable="true"
+               VBox.vgrow="ALWAYS">
+        <AnchorPane style="-fx-background-color: #d3d3d3;">
+            <Button fx:id="mBeginEnuBtn" layoutX="70.0" layoutY="166.0" mnemonicParsing="false"
+                    onAction="#onClickNavigateBtn" text="Begin enumeration"/>
+            <Button fx:id="mAccountBtn" layoutX="93.0" layoutY="313.0" mnemonicParsing="false"
+                    onAction="#onClickNavigateBtn" text="Account"/>
+            <ComboBox fx:id="mContinueEnuCB" layoutX="41.0" layoutY="230.0" onAction="#onClickContinueEnuCB"
+                      prefHeight="31.0" prefWidth="204.0" promptText="Continue enumeration"/>
+            <Button fx:id="mHomePanel" layoutX="80.0" layoutY="378.0" mnemonicParsing="false"
+                    onAction="#onClickNavigateBtn" text="Home panel"/>
         </AnchorPane>
-        <ScrollPane prefHeight="-1.0" prefWidth="-1.0">
-          <content>
-            <AnchorPane id="Content" fx:id="mEnumeratorViewAP" minHeight="-1.0" minWidth="-1.0" prefHeight="545.0" prefWidth="430.0">
-                     <children>
-                        <AnchorPane prefHeight="90.0" prefWidth="425.0" />
-                        <AnchorPane layoutX="1.0" layoutY="14.0" prefHeight="492.0" prefWidth="424.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <children>
-                              <AnchorPane layoutY="64.0" prefHeight="125.0" prefWidth="430.0" AnchorPane.bottomAnchor="356.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="64.0">
-                                 <children>
-                                    <Label layoutX="14.0" layoutY="25.0" text="Enter household number" />
-                                    <TextField layoutX="14.0" layoutY="63.0" />
-                                 </children>
-                              </AnchorPane>
-                              <AnchorPane layoutX="5.0" layoutY="189.0" prefHeight="125.0" prefWidth="430.0">
-                                 <children>
-                                    <Label layoutX="14.0" layoutY="25.0" text="Enter household location" />
-                                    <TextField layoutX="14.0" layoutY="63.0" />
-                                 </children>
-                              </AnchorPane>
-                              <AnchorPane layoutY="314.0" prefHeight="125.0" prefWidth="430.0">
-                                 <children>
-                                    <Label layoutX="14.0" layoutY="25.0" text="How many household members are there?" />
-                                    <TextField layoutX="14.0" layoutY="63.0" />
-                                 </children>
-                              </AnchorPane>
-                              <Button layoutX="310.0" layoutY="458.0" mnemonicParsing="false" text="Next" />
-                           </children>
-                        </AnchorPane>
-                     </children>
-            </AnchorPane>
-          </content>
+        <ScrollPane>
+            <AnchorPane id="Content" fx:id="mEnumeratorViewAP"
+                        prefHeight="722.0" prefWidth="492.0"/>
         </ScrollPane>
         <AnchorPane>
-          <children>
-            <Label alignment="CENTER" font="$x1" layoutX="14.0" layoutY="14.0" style="&#10;" text="Details" textAlignment="CENTER" textFill="$x2" wrapText="false" />
-          </children>
+            <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" style="&#10;" text="Details"
+                   textAlignment="CENTER">
+                <font>
+                    <Font size="18.0" fx:id="x1"/>
+                </font>
+                <textFill>
+                    <Color blue="0.624" green="0.624" red="0.624" fx:id="x2"/>
+                </textFill>
+            </Label>
+            <TextArea fx:id="mDetailsTA" layoutX="29.0" layoutY="87.0" prefHeight="400.0" prefWidth="250.0"/>
         </AnchorPane>
-      </items>
     </SplitPane>
     <HBox id="HBox" alignment="CENTER_LEFT" spacing="5.0" VBox.vgrow="NEVER">
-      <children>
-        <Label maxHeight="1.7976931348623157E308" maxWidth="-1.0" text="Left status" HBox.hgrow="ALWAYS">
-          <font>
-            <Font size="11.0" fx:id="x3" />
-          </font>
-          <textFill>
-            <Color blue="0.625" green="0.625" red="0.625" fx:id="x4" />
-          </textFill>
+        <padding>
+            <Insets bottom="3.0" left="3.0" right="3.0" top="3.0"/>
+        </padding>
+        <Label fx:id="mLeftStatus" maxHeight="1.7976931348623157E308" text="Left status"
+               HBox.hgrow="ALWAYS">
+            <font>
+                <Font size="11.0" fx:id="x3"/>
+            </font>
+            <textFill>
+                <Color blue="0.625" green="0.625" red="0.625" fx:id="x4"/>
+            </textFill>
         </Label>
-        <Pane prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS" />
-        <Label font="$x3" maxWidth="-1.0" text="Right status" textFill="$x4" HBox.hgrow="NEVER" />
-      </children>
-      <padding>
-        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-      </padding>
+        <Pane HBox.hgrow="ALWAYS"/>
+        <Label font="$x3" text="Right status" textFill="$x4" HBox.hgrow="NEVER"/>
     </HBox>
-  </children>
 </VBox>
